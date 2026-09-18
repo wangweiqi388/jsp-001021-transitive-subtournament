@@ -1,0 +1,52 @@
+# formalization.yaml
+# JSP-001021 — Lean 4 formalization credit record.
+#
+# Per TheJustinSunPrize/awards problems/README.md attribution convention:
+#   "Project authorship and evaluation/publication role:
+#    Lean credit follows the named project role in formalization.yaml."
+#
+# This file records who formally proved the theorem in Lean. Co-signed by the
+# human Formalizer (王玮琪 / WangWeiqi, GitHub: wangweiqi388) and the AI
+# co-formalizer (WorkBuddy).
+
+problem: JSP-001021
+statement: >-
+  Every n-tournament contains a transitive subtournament of size at least
+  ceil(log2(n+1)). (Erdos-Moser 1964, lower bound; exact f(n) is open:
+  Reid-Parker 1970 disproved the equality conjecture.)
+theorem: JustinSunPrize.transitiveSubtournament
+file: TransitiveSubtournament.lean
+
+toolchain:
+  language: Lean 4
+  version: 4.34.0
+  library: core (Init only)        # explicitly NO mathlib dependency
+  build: "lean TransitiveSubtournament.lean"   # single file, no lake project
+  axioms: [propext, Quot.sound]    # core Lean axioms only; no sorryAx / choice
+
+contributors:
+  - role: Formalizer
+    name: "王玮琪 (WangWeiqi, GitHub: wangweiqi388)"
+    affiliation: ""                         # optional
+    contribution: >-
+      Complete Lean 4 formalization of the Erdos-Moser (1964) lower-bound
+      theorem, including the link lemma bound_spec
+      (bound n = ceil(log2(n+1))). No sorry/admit; verified by lean.exe
+      direct compile (exit 0) and an independent Python check
+      (verify_transitive.py, all pass).
+    files:
+      - TransitiveSubtournament.lean
+    evidence:
+      - verify_transitive.py
+  - role: Co-formalizer
+    name: "WorkBuddy (AI assistant)"
+    affiliation: ""                         # AI tooling / co-formalization support
+    contribution: >-
+      AI-assisted co-formalization: jointly developed the Lean 4 proof,
+      the constructive-induction structure, the bound_spec link lemma,
+      and the independent Python verifier with the human Formalizer.
+      Per award rules, AI tool usage is acknowledged and does not by itself
+      confer solver credit; the Formalizer role above carries primary credit.
+    files:
+      - TransitiveSubtournament.lean
+      - verify_transitive.py
