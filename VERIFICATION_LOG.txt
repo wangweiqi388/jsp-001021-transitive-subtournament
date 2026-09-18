@@ -1,0 +1,77 @@
+JSP-001021 形式化验证日志  (2026-09-18 13:00:25    )
+工具链: Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)
+文件: TransitiveSubtournament.lean (仅 import Init, 无 mathlib)
+================================================================
+[1] Lean 直编 (lean TransitiveSubtournament.lean)
+  -> BUILD_EXIT=0
+================================================================
+[2] 公理审计 (#print axioms JustinSunPrize.transitiveSubtournament)
+'JustinSunPrize.transitiveSubtournament' depends on axioms: [propext, Quot.sound]
+  -> AXIOM_CHECK_EXIT=0
+================================================================
+[3] 禁用构造扫描 (sorry/admit/axiom/sorryAx/Classical.choice/noncomputable/unsafe/partial/implemented_by/extern)
+  -> NONE (GOOD)
+================================================================
+[4] 独立 Python 验证 (verify_transitive.py)
+JSP-001021 竞赛图传递子竞赛图下界  ceil(log2(n+1))  机器验证
+
+说明：n<=6 为对所有竞赛图的完全穷举（精确证明 bound 值）；
+      n<=40 的构造性贪心算法(即归纳证明的算法)随机验证；紧例单独验证。
+
+=== (A) 穷举验证：对所有竞赛图，最小最大传递子竞赛图尺寸 == bound(n) ===
+  n= 1: 竞赛图数=       1  最小最大传递尺寸=1  bound(n)=1  -> OK
+  n= 2: 竞赛图数=       2  最小最大传递尺寸=2  bound(n)=2  -> OK
+  n= 3: 竞赛图数=       8  最小最大传递尺寸=2  bound(n)=2  -> OK
+  n= 4: 竞赛图数=      64  最小最大传递尺寸=3  bound(n)=3  -> OK
+  n= 5: 竞赛图数=    1024  最小最大传递尺寸=3  bound(n)=3  -> OK
+  n= 6: 竞赛图数=   32768  最小最大传递尺寸=3  bound(n)=3  -> OK
+
+=== (B) 构造性贪心算法（归纳证明的算法）随机验证：返回尺寸 >= bound(n) ===
+  n= 1: bound=1  贪心最差返回尺寸=1  -> OK
+  n= 2: bound=2  贪心最差返回尺寸=2  -> OK
+  n= 3: bound=2  贪心最差返回尺寸=2  -> OK
+  n= 4: bound=3  贪心最差返回尺寸=3  -> OK
+  n= 5: bound=3  贪心最差返回尺寸=3  -> OK
+  n= 6: bound=3  贪心最差返回尺寸=3  -> OK
+  n= 7: bound=3  贪心最差返回尺寸=3  -> OK
+  n= 8: bound=4  贪心最差返回尺寸=4  -> OK
+  n= 9: bound=4  贪心最差返回尺寸=4  -> OK
+  n=10: bound=4  贪心最差返回尺寸=4  -> OK
+  n=11: bound=4  贪心最差返回尺寸=4  -> OK
+  n=12: bound=4  贪心最差返回尺寸=4  -> OK
+  n=13: bound=4  贪心最差返回尺寸=4  -> OK
+  n=14: bound=4  贪心最差返回尺寸=4  -> OK
+  n=15: bound=4  贪心最差返回尺寸=4  -> OK
+  n=16: bound=5  贪心最差返回尺寸=5  -> OK
+  n=17: bound=5  贪心最差返回尺寸=5  -> OK
+  n=18: bound=5  贪心最差返回尺寸=5  -> OK
+  n=19: bound=5  贪心最差返回尺寸=5  -> OK
+  n=20: bound=5  贪心最差返回尺寸=5  -> OK
+  n=21: bound=5  贪心最差返回尺寸=5  -> OK
+  n=22: bound=5  贪心最差返回尺寸=5  -> OK
+  n=23: bound=5  贪心最差返回尺寸=5  -> OK
+  n=24: bound=5  贪心最差返回尺寸=5  -> OK
+  n=25: bound=5  贪心最差返回尺寸=5  -> OK
+  n=26: bound=5  贪心最差返回尺寸=5  -> OK
+  n=27: bound=5  贪心最差返回尺寸=5  -> OK
+  n=28: bound=5  贪心最差返回尺寸=5  -> OK
+  n=29: bound=5  贪心最差返回尺寸=5  -> OK
+  n=30: bound=5  贪心最差返回尺寸=5  -> OK
+  n=31: bound=5  贪心最差返回尺寸=5  -> OK
+  n=32: bound=6  贪心最差返回尺寸=6  -> OK
+  n=33: bound=6  贪心最差返回尺寸=6  -> OK
+  n=34: bound=6  贪心最差返回尺寸=6  -> OK
+  n=35: bound=6  贪心最差返回尺寸=6  -> OK
+  n=36: bound=6  贪心最差返回尺寸=6  -> OK
+  n=37: bound=6  贪心最差返回尺寸=6  -> OK
+  n=38: bound=6  贪心最差返回尺寸=6  -> OK
+  n=39: bound=6  贪心最差返回尺寸=6  -> OK
+  n=40: bound=6  贪心最差返回尺寸=6  -> OK
+
+=== (C) 紧例（最大传递子竞赛图尺寸 == bound(n)）===
+  n=3  3-圈:        最大传递尺寸=2  bound=2  -> 紧
+  n=4  非传递图:    最大传递尺寸=3  bound=3  -> 紧
+  n=7  Paley(7):    最大传递尺寸=3  bound=3  -> 紧
+
+汇总: 全部通过 ✅
+  -> PY_EXIT=0
